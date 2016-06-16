@@ -35,15 +35,6 @@ exports.process = function(grunt, task, context) {
 
   var source = grunt.file.read(template);
 
-  // Replace reporter and start script urls
-  // Jasmine reporter makes these all relative but that messes
-  // with curl
-  var replaceGrunt = function(script){
-    return "js!" +script.replace(".grunt", "grunt");
-  }
-  context.scripts.start = context.scripts.start.map(replaceGrunt);
-  context.scripts.reporters = context.scripts.reporters.map(replaceGrunt);
-
   return grunt.util._.template(source, context);
 };
 
